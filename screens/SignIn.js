@@ -14,11 +14,17 @@ const SignIn = () => {
       <View style={styles.form}>
         <Text style={styles.title}>Connexion</Text>
 
-        <TextInput placeholder="Email" style={styles.input} />
-        <TextInput placeholder="Mot de passe" secureTextEntry style={styles.input} />
+        <TextInput placeholder="Entrez votre Email" style={styles.input} />
+        <TextInput placeholder="Votre mot de passe" secureTextEntry style={styles.input} />
 
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Se connecter</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.til1}> OU </Text>
+
+        <TouchableOpacity style={styles.buttongoogle}>
+          <Text style={styles.buttonText}>Se connecter avec Google</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
@@ -34,29 +40,58 @@ const SignIn = () => {
 export default SignIn;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
+  container: { 
+    flex: 1, 
+    backgroundColor: '#fff',
+},
   form: {
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 30,
   },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 30, textAlign: 'center' },
+  title: { 
+    fontSize: 24, 
+    fontWeight: 'bold', 
+    marginBottom: 30, 
+    textAlign: 'center' 
+},
+til1: { 
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    marginBottom: 20, 
+    textAlign: 'center' 
+},
   input: {
-    maxWidth: '300px',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 12,
-    borderRadius: 6,
-    marginBottom: 15,
+    backgroundColor: '#F9FAFB',
+    width: '300px',
+    padding: 10,
+    marginBottom: 20,
   },
   button: {
     backgroundColor: '#007bff',
-    padding: 12,
+    padding: 10,
     borderRadius: 6,
     marginBottom: 10,
   },
-  buttonText: { color: '#fff', textAlign: 'center', fontSize: 16 },
-  link: { color: '#007bff', textAlign: 'center', marginTop: 10 },
+  buttonText: { 
+    width: '250px',
+    color: '#fff', 
+    textAlign: 'center', 
+    fontSize: 16,
+    fontWeight: '600',
+ },
+ buttongoogle:{
+    
+    padding: 12,
+    borderRadius: 6,
+    marginBottom: 10,
+    backgroundColor: '#8B5CF6',
+ },
+
+  link: {
+     color: '#007bff',
+     textAlign: 'center', 
+     marginTop: 10 
+    },
 });
