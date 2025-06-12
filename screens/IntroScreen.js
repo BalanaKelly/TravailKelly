@@ -2,10 +2,14 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const IntroScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
+        <Navbar/>
+        
       {/* Zone pour le logo */}
       <View style={styles.logoContainer}>
         <View style={styles.logoCircle}>
@@ -39,7 +43,9 @@ const IntroScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate('HomeScreen')}>
         <Text style={styles.nextText}>Next</Text>
       </TouchableOpacity>
+      <Footer/>
     </View>
+    
   );
 };
 
@@ -48,7 +54,6 @@ export default IntroScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
     justifyContent: 'space-between',
     backgroundColor: '#fff',
   },
@@ -102,7 +107,8 @@ const styles = StyleSheet.create({
   },
   nextButton: {
     alignSelf: 'flex-end',
-    marginBottom: 20,
+    marginBottom: 30,
+    paddingHorizontal: 30,
   },
   nextText: {
     color: '#3B82F6',

@@ -2,10 +2,14 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
+        <Navbar/>
+        
         {/* Texte principal */}
       <View style={styles.textContainer}>
         <Text style={styles.title}> Révise malin.{'\n'}</Text>
@@ -34,6 +38,7 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
 
       </View>
+      <Footer/>
     </View>
   );
 };
@@ -43,8 +48,8 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-between',
+    
     backgroundColor: '#fff',
   },
   textContainer: {
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
   pagination: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 30,
+    marginBottom: 90,
   },
   dot: {
     width: 20,
@@ -86,20 +91,24 @@ const styles = StyleSheet.create({
   activeDot: {
     backgroundColor: '#8B5CF6',
   },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    bottom: 30,
+    width: '100%',
+    
+
+  },
   prevText: {
     color: '#OOO',
     fontSize: 16,
     fontWeight: '600'
 
   },
-  nextButton: {
-    alignSelf: 'flex-end',
-    marginBottom: 20,
-  },
   nextText: {
     color: '#3B82F6',
     fontSize: 16,
     fontWeight: '600',
-    margin: 20,
   },
 });
