@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Picker } from '@react-native-picker/picker';
-
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -52,7 +51,14 @@ export default function SignInScreen() {
         alert('Veuillez sélectionner un niveau');
         return;
       }
-      navigation.navigate('DashboardAdmin', { niveau });
+      // Redirection selon le niveau
+      if (niveau === '1') {
+        navigation.navigate('DashboardAdminN1');
+      } else if (niveau === '2') {
+        navigation.navigate('DashboardAdminN2');
+      } else if (niveau === '3') {
+        navigation.navigate('DashboardAdminN3');
+      }
     } else if (role === 'Étudiant') {
       navigation.navigate('DashboardStudent');
     } else if (role === 'Enseignant') {

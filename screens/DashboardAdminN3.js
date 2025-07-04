@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet, ScrollView, TouchableOpacity, Modal, Te
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Calendar } from 'react-native-calendars';
 
-const DashboardAdmin = () => {
+const DashboardAdminN3 = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [calendarVisible, setCalendarVisible] = useState(false);
     const [courseDetails, setCourseDetails] = useState({
@@ -101,7 +101,7 @@ const DashboardAdmin = () => {
 
     return (
         <ScrollView style={styles.container}>
-            <Text style={styles.title}>Gestion des emplois du temps - Niveau 2</Text>
+            <Text style={styles.title}>Gestion des emplois du temps - Niveau 3</Text>
 
             <View style={styles.header}>
                 <Text style={styles.weekLabel}>Filière:</Text>
@@ -110,8 +110,9 @@ const DashboardAdmin = () => {
                     style={styles.picker}
                     onValueChange={(itemValue) => setSelectedFiliere(itemValue)}
                 >
-                    <Picker.Item label="GI" value="GI" />
+                    <Picker.Item label="GI" value="GL" />
                     <Picker.Item label="GRT" value="GRT" />
+                    <Picker.Item label="GRT" value="ASR" />
                     {/* Ajoute d'autres filières ici */}
                 </Picker>
                 <Text style={styles.weekLabel}>Semaine:</Text>
@@ -385,4 +386,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default DashboardAdmin;
+export default DashboardAdminN3;

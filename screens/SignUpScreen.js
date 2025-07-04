@@ -41,10 +41,11 @@ export default function SignUpScreen() {
   const [adminKeyError, setAdminKeyError] = useState('');
 
   useEffect(() => {
-    if (niveau && (role === 'Etudiant' || role === 'RA')) {
+    if (niveau && role === 'Etudiant') {
       setAvailableFilieres(FILIERES_BY_NIVEAU[niveau] || []);
     } else {
       setAvailableFilieres([]);
+      setFiliere(''); // Réinitialiser la filière si le niveau change
     }
   }, [niveau, role]);
 
@@ -99,7 +100,7 @@ export default function SignUpScreen() {
       setRoleError('');
     }
 
-    if (role === 'Etudiant' || role === 'RA') {
+    if (role === 'Etudiant') {
       if (!niveau) {
         setNiveauError('Veuillez sélectionner un niveau');
         hasError = true;
@@ -116,6 +117,13 @@ export default function SignUpScreen() {
     }
 
     if (role === 'RA') {
+      if (!niveau) {
+        setNiveauError('Veuillez sélectionner un niveau');
+        hasError = true;
+      } else {
+        setNiveauError('');
+      }
+
       const isValidKey = await checkAdminKey(niveau, adminKey);
       if (!isValidKey) {
         setAdminKeyError('Clé admin incorrecte pour ce niveau.');
@@ -127,14 +135,15 @@ export default function SignUpScreen() {
 
     if (hasError) return;
 
-    navigation.navigate('ConfirmationCodeScreen', {
-      fullName,
-      email,
-      password, // 🔐 Transmis à l'écran suivant
-      niveau,
-      filiere,
-      role,
-    });
+    // Redirection vers le bon tableau de bord
+    if (role === 'RA') {
+      navigation.navigate(`DashboardAdminN${niveau}`);
+    } else if (role === 'Etudiant') {
+      navigation.navigate(`DashboardEtudiant`);
+    } else {
+      // Gérer d'autres rôles si nécessaire
+      navigation.navigate(`DashboardTeacher`);
+    }
   };
 
   return (
@@ -221,6 +230,7 @@ export default function SignUpScreen() {
                 onValueChange={(value) => {
                   setNiveau(value);
                   setNiveauError('');
+                  setFiliere(''); // Réinitialiser la filière à chaque changement de niveau
                 }}
                 style={styles.picker}
               >
@@ -231,28 +241,28 @@ export default function SignUpScreen() {
               </Picker>
             </View>
             {niveauError ? <Text style={styles.errorText}>{niveauError}</Text> : null}
-          </>
-        )}
 
-        {availableFilieres.length > 0 && (
-          <>
-            <Text style={styles.label}>Filière</Text>
-            <View style={styles.pickerWrapper}>
-              <Picker
-                selectedValue={filiere}
-                onValueChange={(value) => {
-                  setFiliere(value);
-                  setFiliereError('');
-                }}
-                style={styles.picker}
-              >
-                <Picker.Item label="Sélectionner une filière" value="" />
-                {availableFilieres.map((f) => (
-                  <Picker.Item key={f} label={f} value={f} />
-                ))}
-              </Picker>
-            </View>
-            {filiereError ? <Text style={styles.errorText}>{filiereError}</Text> : null}
+            {role === 'Etudiant' && availableFilieres.length > 0 && (
+              <>
+                <Text style={styles.label}>Filière</Text>
+                <View style={styles.pickerWrapper}>
+                  <Picker
+                    selectedValue={filiere}
+                    onValueChange={(value) => {
+                      setFiliere(value);
+                      setFiliereError('');
+                    }}
+                    style={styles.picker}
+                  >
+                    <Picker.Item label="Sélectionner une filière" value="" />
+                    {availableFilieres.map((f) => (
+                      <Picker.Item key={f} label={f} value={f} />
+                    ))}
+                  </Picker>
+                </View>
+                {filiereError ? <Text style={styles.errorText}>{filiereError}</Text> : null}
+              </>
+            )}
           </>
         )}
 

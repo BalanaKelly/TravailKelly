@@ -10,6 +10,10 @@ import ConfirmationRecapScreen from '../screens/ConfirmationRecapScreen';
 import DashboardStudent from '../screens/DashboardStudent';
 import  DashboardTeacher from '../screens/DashboardTeacher';
 import DashboardAdmin from '../screens/DashboardAdmin';
+import DashboardAdminN1 from '../screens/DashboardAdminN1';
+
+/* import DashboardAdminN2 from '../screens/DashboardAdminN2'; */
+import DashboardAdminN3 from '../screens/DashboardAdminN3';
 
 
 const Stack = createNativeStackNavigator();
@@ -48,7 +52,9 @@ export default function AppNavigator() {
       <Stack.Screen name="DashboardStudent" component={DashboardStudent} />
       <Stack.Screen name="DashboardTeacher" component={DashboardTeacher} />
       <Stack.Screen name="DashboardAdmin" component={DashboardAdmin} options={{ headerShown: false }}/>
-      
+      <Stack.Screen name="DashboardAdminN1" component={DashboardAdminN1} options={{ headerShown: false }}/>
+
+      <Stack.Screen name="DashboardAdminN3" component={DashboardAdminN3} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }
